@@ -1,0 +1,5 @@
+# Har qanday bot/skriner uchun ruxsat
+User-agent: *
+Allow: /
+
+Sitemap: https://hojiakbar.vercel.app/sitemap.xml
