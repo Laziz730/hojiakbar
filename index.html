@@ -1673,5 +1673,33 @@
   });
 })();
 </script>
+<script>
+(function () {
+  function nag(msg) {
+    try { var o = document.getElementById("antiNag"); if (o) o.remove(); } catch (e) {}
+    var d = document.createElement("div");
+    d.id = "antiNag";
+    d.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:99999;max-width:88vw;padding:22px 30px;border-radius:18px;border:2px solid #ff4d4d;background:rgba(8,8,14,.96);color:#ff6b6b;font:bold 1.15rem/1.4 'Segoe UI',Arial,sans-serif;text-align:center;letter-spacing:.02em;box-shadow:0 18px 60px rgba(0,0,0,.6);pointer-events:none;opacity:0;transition:opacity .18s";
+    d.textContent = msg;
+    (document.body || document.documentElement).appendChild(d);
+    requestAnimationFrame(function () { d.style.opacity = "1"; });
+    setTimeout(function () { d.style.opacity = "0"; setTimeout(function () { d.remove(); }, 250); }, 1600);
+  }
+  var MSG = "Pashol naxuy, kodni olasan!?";
+  document.addEventListener("contextmenu", function (e) { e.preventDefault(); nag(MSG); });
+  document.addEventListener("keydown", function (e) {
+    var k = e.keyCode || e.which;
+    var mine = (k === 123) || (e.ctrlKey && e.shiftKey && (k === 73 || k === 74 || k === 67)) || (e.ctrlKey && (k === 85 || k === 83));
+    if (mine) { e.preventDefault(); e.stopPropagation(); nag(MSG); return false; }
+  });
+  setInterval(function () {
+    try {
+      var dx = window.outerWidth - window.innerWidth;
+      var dy = window.outerHeight - window.innerHeight;
+      if (dx > 160 && dy > 160) nag(MSG);
+    } catch (e) {}
+  }, 1500);
+})();
+</script>
 </body>
 </html>
