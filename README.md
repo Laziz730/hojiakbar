@@ -1,4 +1,4 @@
-# hojiakbar — Portfolio
+# xamidov — Portfolio
 
 Xojiakbar Xamidov | Python Dasturchi
 
